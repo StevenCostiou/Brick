@@ -9,5 +9,10 @@ BaselineOfBrick >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ spec package: 'Brick-Editor' with: [ spec requires: 'Penfeld-Bloc' ] ]
+		do: [ spec
+				loads: #('Penfeld-Bloc');
+				repository: 'github://plantec/penfeld/src'.
+			spec
+				package: 'Brick-Editor'
+				with: [ spec requires: 'Penfeld-Bloc' ] ]
 ]
