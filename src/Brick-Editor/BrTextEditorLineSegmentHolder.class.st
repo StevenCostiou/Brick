@@ -44,11 +44,11 @@ BrTextEditorLineSegmentHolder >> createSegmentElement [
 		constraintsDo: [ :c |
 			c horizontal matchParent.
 			c vertical fitContent ];
-		look: (BrLayoutResizerLook new
+		"look: (BrLayoutResizerLook new
 			hExactToMatchParent;
 			hMatchParent;
 			hFitContent;
-			vAnyToFitContent);
+			vAnyToFitContent);"
 		yourself
 ]
 

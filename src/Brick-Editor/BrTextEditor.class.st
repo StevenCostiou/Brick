@@ -9,7 +9,7 @@ I subclass infinite data source in order to be able to smoothly display practica
 "
 Class {
 	#name : #BrTextEditor,
-	#superclass : #BlInfiniteDataSource,
+	#superclass : #PenInfiniteDataSource,
 	#instVars : [
 		'text',
 		'selection',
@@ -220,6 +220,46 @@ BrTextEditor >> deselecter [
 { #category : #'commands - processing' }
 BrTextEditor >> enqueueCommand: aBrTextEditorInsertCommand [
 	commandMutex critical: [ aBrTextEditorInsertCommand executeOn: self ]
+]
+
+{ #category : #'*Brick-Editor-Extensions' }
+BrTextEditor >> gtInspectorSegmentsIn: aComposite [
+	<gtInspectorPresentationOrder: 15>
+
+	^ self segmentCollector gtInspectorSegmentsIn: aComposite
+]
+
+{ #category : #'*Brick-Editor-Extensions' }
+BrTextEditor >> gtLiveFor: aView [
+	<gtView>
+
+	^ aView explicit
+		title: 'Live';
+		priority: 0;
+		stencil: [ 
+			BrEditorElement new 
+				editor: self;
+				padding: (BlInsets all: 10);
+				constraintsDo: [ :c | 
+					c horizontal matchParent.
+					c vertical matchParent ] ]
+]
+
+{ #category : #'*Brick-Editor-Extensions' }
+BrTextEditor >> gtSelectionTreeFor: aView [
+	<gtView>
+
+	^ (selection gtTreeFor: aView)
+		priority: 1;
+		title: 'Selection'
+]
+
+{ #category : #'*Brick-Editor-Extensions' }
+BrTextEditor >> gtTextFor: aView [
+	<gtView>
+	^ (self text 
+		gtTextFor: aView)
+		priority: 3
 ]
 
 { #category : #'text - selection' }

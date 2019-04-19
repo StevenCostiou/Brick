@@ -20,17 +20,26 @@ BrEditor >> deleter [
 	^ self editor deleter
 ]
 
+{ #category : #'api - style' }
+BrEditor >> exact: aPoint [
+	| aSize |
+	
+	aSize := aPoint asPoint.
+	"self hExact: aSize x.
+	self vExact: aSize y"
+]
+
 { #category : #initialization }
 BrEditor >> initialize [
 	super initialize.
 	
 	self editor: BrTextEditor new.
 	
-	self viewModel: (BrInteractiveModel withAll: {
+"	self viewModel: (BrInteractiveModel withAll: {
 		BrLayoutHorizontalResizerModel matchParent.
 		BrLayoutVerticalResizerModel fitContent }).
 
-	self look: (BrLayoutResizerLook inherit)
+	self look: (BrLayoutResizerLook inherit)"
 ]
 
 { #category : #'editor - operations' }

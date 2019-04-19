@@ -27,6 +27,13 @@ BrEditorElement >> editor: aBrTextEdior [
 	self dataSource: aBrTextEdior
 ]
 
+{ #category : #'*Brick-Editor-Extensions' }
+BrEditorElement >> gtInspectorSegmentsIn: aComposite [
+	<gtInspectorPresentationOrder: 15>
+
+	^ self editor gtInspectorSegmentsIn: aComposite
+]
+
 { #category : #scrolling }
 BrEditorElement >> scrollToLast [
 	"Scroll instantly to the last segment"

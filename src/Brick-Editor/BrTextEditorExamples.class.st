@@ -56,15 +56,18 @@ BrTextEditorExamples class >> exampleEditor [
 		c vertical matchParent ].
 	
 	editor := BrTextEditor new.
-	text := BlRopedText string: self loremIpsum.
+	text := BlRopedText string: 'À quoi bon vos étincelles, bleus saphirs sans les yeux doux,
+Les diamants sans les belles, ne sont plus que des cailloux.'.
 	
 	editor text: text.
 	editorElement editor: editor.
+	self halt.
 
 	space := BlSpace new.
 	space extent: self extent.
 	space root addChild: editorElement.
-	space show
+	space show.
+	editor inspect
 ]
 
 { #category : #examples }

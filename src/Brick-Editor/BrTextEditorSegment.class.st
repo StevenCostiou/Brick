@@ -20,6 +20,14 @@ BrTextEditorSegment >> gtDisplayOn: aStream [
 	self printOn: aStream
 ]
 
+{ #category : #'*Brick-Editor-Extensions' }
+BrTextEditorSegment >> gtInspectorTextIn: composite [
+	<gtInspectorPresentationOrder: 5>  
+	 composite text
+		title: 'Text';
+		format: self text asString
+]
+
 { #category : #initialization }
 BrTextEditorSegment >> initializeWith: aBrSubText [
 	"Initialize this segment with a given sub-text"
