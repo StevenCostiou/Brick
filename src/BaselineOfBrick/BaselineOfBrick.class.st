@@ -7,5 +7,7 @@ Class {
 { #category : #baselines }
 BaselineOfBrick >> baseline: spec [
 	<baseline>
-	spec for: #common do: [ spec package: 'Brick-Editor' ]
+	spec
+		for: #common
+		do: [ spec package: 'Brick-Editor' with: [ spec requires: 'Penfeld-Bloc' ] ]
 ]
