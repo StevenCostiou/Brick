@@ -16,5 +16,5 @@ BaselineOfBrick >> baseline: spec [
 						repository: 'github://plantec/penfeld/src' ].
 			spec
 				package: 'Brick-Editor'
-				with: [ spec requires: 'Penfeld-Brick-TextEditor' ] ]
+				with: [ spec requires: 'Penfeld' ] ]
 ]
