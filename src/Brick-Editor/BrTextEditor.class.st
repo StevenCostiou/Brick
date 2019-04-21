@@ -904,6 +904,11 @@ BrTextEditor >> selectionRecorder [
 	^ selectionRecorder
 ]
 
+{ #category : #accessing }
+BrTextEditor >> setTextFromString: aString [
+	self text: (BlRopedText string: aString) 
+]
+
 { #category : #'text - styling' }
 BrTextEditor >> styleText [
 	"I request styler to re-style my current text"
