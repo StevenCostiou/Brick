@@ -135,7 +135,7 @@ BrTextEditorLineSegmentSplitter >> split: aText [
 			self processSegment: lineIterator in: aStream ] ].
 
 	thePieces := thePieces
-		ifEmpty:[ { self textPiece: (aText from: 0 to: 0) } ]
+		ifEmpty:[ { self textPiece: (aText from: 1 to: 0) } ]
 		ifNotEmpty: #yourself.
 
 	^ thePieces
