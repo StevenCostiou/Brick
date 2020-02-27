@@ -37,7 +37,7 @@ BrTextEditorLineSplitter >> split: aBrText in: aBrEditorSegmentStream [
 	| anIterator |
 
 	aBrText isEmpty
-		ifTrue: [ ^ aBrEditorSegmentStream nextPut: (self newSegment: aBrText from: 0 to: 0 delimited: 0) ].
+		ifTrue: [ ^ aBrEditorSegmentStream nextPut: (self newSegment: aBrText from: 1 to: 0 delimited: 0) ].
 
 	anIterator := aBrText iterator.
 

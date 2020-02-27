@@ -448,8 +448,8 @@ BrTextEditor >> initializeInteractions [
 
 { #category : #initialization }
 BrTextEditor >> initializeText: aBrText [
-	aBrText when: BlTextStringInserted send: #onStringInserted: to: self.
-	aBrText when: BlTextDeleted send: #onTextDeleted: to: self
+	aBrText when: BlTextStringsInserted send: #onStringsInserted: to: self.
+	aBrText when: BlTextsDeleted send: #onTextsDeleted: to: self
 ]
 
 { #category : #'private - text' }
@@ -733,35 +733,45 @@ BrTextEditor >> onLostFocus [
 ]
 
 { #category : #'hooks - text modifications' }
-BrTextEditor >> onStringInserted: aBrTextStringInserted [
-	"Is sent after a string is inserted in a text model"
+BrTextEditor >> onStringsInserted: aBlTextStringsInserted [
+	"Is sent after a few strings (or one) are inserted in a text model"
+	
+	aBlTextStringsInserted strings
+		with: aBlTextStringsInserted finalIndices
+		do: [ :aString :anIndex |
+			self segmentBuilder
+				insertedString: aString
+				at: anIndex
+				in: self ].
 
-	self segmentBuilder
-		insertedString: aBrTextStringInserted string
-		at: aBrTextStringInserted index
-		in: self.
+	aBlTextStringsInserted strings
+		with: aBlTextStringsInserted finalIndices
+		do: [ :aString :anIndex |
+			self
+				notifyInserted: aString asRopedText
+				at: anIndex ].
 
-	self styleText.
-
-	self
-		notifyInserted: (aBrTextStringInserted string asRopedText)
-		at: aBrTextStringInserted index
+	self styleText
 ]
 
 { #category : #'hooks - text modifications' }
-BrTextEditor >> onTextDeleted: aBlTextDeleted [
+BrTextEditor >> onTextsDeleted: aBlTextsDeleted [
 	"Is sent after a piece of text was deleted in a text model"
 
-	self segmentBuilder
-		deletedFrom: aBlTextDeleted fromIndex
-		to: aBlTextDeleted toIndex
-		in: self.
+	aBlTextsDeleted finalIntervals
+		do: [ :eachInterval |
+			self segmentBuilder
+				deletedFrom: eachInterval first
+				to:  eachInterval last
+				in: self ].
 
-	self styleText.
-	
-	self
-		notifyDeletedFrom: aBlTextDeleted fromIndex
-		to: aBlTextDeleted toIndex
+	aBlTextsDeleted finalIntervals
+		do: [ :eachInterval |
+			self
+				notifyDeletedFrom: eachInterval first
+				to:  eachInterval last ].
+
+	self styleText
 ]
 
 { #category : #'text - copy/paste' }

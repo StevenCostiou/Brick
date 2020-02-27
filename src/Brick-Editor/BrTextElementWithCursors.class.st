@@ -65,7 +65,7 @@ BrTextElementWithCursors >> cursorScreenPositionAt: aTextIndex [
 	<return: #Point>
 	| aScreenPosition |
 	
-	aScreenPosition := self paragraph positionAt: aTextIndex.
+	aScreenPosition := self paragraph positionAt: aTextIndex on: self measurer measurer.
 	^ aScreenPosition x @ (self height / 2.0)
 ]
 
